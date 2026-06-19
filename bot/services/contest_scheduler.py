@@ -15,7 +15,7 @@ from bot.constants import E_CHECK, E_CROSS, E_LOADING, EMOJI_CONFETTI, E_LINK, E
 
 logger = logging.getLogger(__name__)
 
-KYIV = ZoneInfo("Europe/Kiev")
+KYIV = ZoneInfo("Europe/Kyiv")
 
 TIER_10_TEXT = "🎉 <b>1 аккаунт</b>"
 TIER_20_TEXT = "🎉 <b>1 аккаунт + промокод @feAutoSenderbot</b>"
