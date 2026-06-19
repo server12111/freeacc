@@ -140,3 +140,7 @@ async def main() -> None:
         await db.close()
         await bot.session.close()
         logger.info("Shutdown complete")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
