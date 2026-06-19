@@ -1,3 +1,7 @@
+import sys
+sys.stderr = sys.stdout  # merge stderr into stdout so hosting captures everything
+print("=== bot/main.py starting ===", flush=True)
+
 import asyncio
 import logging
 import os
