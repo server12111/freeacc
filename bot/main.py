@@ -1,26 +1,54 @@
 import sys
-sys.stderr = sys.stdout  # merge stderr into stdout so hosting captures everything
-print("=== bot/main.py starting ===", flush=True)
+sys.stderr = sys.stdout
+print("=== [1] sys ok ===", flush=True)
 
-import asyncio
-import logging
-import os
-import signal
+import asyncio, logging, os, signal
+print("=== [2] stdlib ok ===", flush=True)
 
-from aiogram import Bot, Dispatcher
-from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ParseMode
-from aiogram.types import ErrorEvent
+try:
+    from aiogram import Bot, Dispatcher
+    from aiogram.client.default import DefaultBotProperties
+    from aiogram.enums import ParseMode
+    from aiogram.types import ErrorEvent
+    print("=== [3] aiogram ok ===", flush=True)
+except Exception as e:
+    print(f"=== [3] aiogram FAIL: {e} ===", flush=True)
+    raise
 
-from bot.config import Config
-from bot.database.db import Database
-from bot.handlers import setup_routers
-from bot.middlewares.user import UserMiddleware
-from bot.middlewares.subscription import SubscriptionMiddleware
-from bot.userbot.manager import UserbotManager
-from bot.services.account_issuer import AccountIssuerService
-from bot.services.contest_monitor import ContestMonitorService
-from bot.services.contest_scheduler import ContestSchedulerService
+try:
+    from bot.config import Config
+    print("=== [4] config ok ===", flush=True)
+except Exception as e:
+    print(f"=== [4] config FAIL: {e} ===", flush=True)
+    raise
+
+try:
+    from bot.database.db import Database
+    print("=== [5] db ok ===", flush=True)
+except Exception as e:
+    print(f"=== [5] db FAIL: {e} ===", flush=True)
+    raise
+
+try:
+    from bot.handlers import setup_routers
+    from bot.middlewares.user import UserMiddleware
+    from bot.middlewares.subscription import SubscriptionMiddleware
+    print("=== [6] handlers/middlewares ok ===", flush=True)
+except Exception as e:
+    print(f"=== [6] handlers/middlewares FAIL: {e} ===", flush=True)
+    raise
+
+try:
+    from bot.userbot.manager import UserbotManager
+    from bot.services.account_issuer import AccountIssuerService
+    from bot.services.contest_monitor import ContestMonitorService
+    from bot.services.contest_scheduler import ContestSchedulerService
+    print("=== [7] services ok ===", flush=True)
+except Exception as e:
+    print(f"=== [7] services FAIL: {e} ===", flush=True)
+    raise
+
+print("=== [8] all imports done ===", flush=True)
 
 logger = logging.getLogger(__name__)
 
