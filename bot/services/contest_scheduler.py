@@ -2,7 +2,7 @@ import asyncio
 import logging
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
-from zoneinfo import ZoneInfo
+from datetime import timezone, timedelta
 
 if TYPE_CHECKING:
     from aiogram import Bot
@@ -15,7 +15,11 @@ from bot.constants import E_CHECK, E_CROSS, E_LOADING, EMOJI_CONFETTI, E_LINK, E
 
 logger = logging.getLogger(__name__)
 
-KYIV = ZoneInfo("Europe/Kyiv")
+try:
+    from zoneinfo import ZoneInfo
+    KYIV = ZoneInfo("Europe/Kyiv")
+except Exception:
+    KYIV = timezone(timedelta(hours=3))
 
 TIER_10_TEXT = "🎉 <b>1 аккаунт</b>"
 TIER_20_TEXT = "🎉 <b>1 аккаунт + промокод @feAutoSenderbot</b>"
