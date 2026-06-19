@@ -1,0 +1,12 @@
+data/
+sessions/
+*.session
+*.session-journal
+.env
+__pycache__/
+*.pyc
+bot_stdout.txt
+bot_stderr.txt
+bot_log.txt
+bot_err.txt
+logs/
