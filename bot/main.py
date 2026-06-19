@@ -74,7 +74,12 @@ async def main() -> None:
                 pass
         return True
 
-    await userbot.start(monitor)
+    try:
+        await asyncio.wait_for(userbot.start(monitor), timeout=30)
+    except asyncio.TimeoutError:
+        logger.warning("Userbot connection timed out — bot starts without userbot")
+    except Exception as exc:
+        logger.warning("Userbot failed to start: %s — bot starts without userbot", exc)
     scheduler.start()
     logger.info("Bot starting — admins: %s", config.ADMIN_IDS)
 
